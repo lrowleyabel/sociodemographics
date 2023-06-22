@@ -1,5 +1,5 @@
 Package: sociodemographics
-Title: Tools for Handling Common Socio-Demographic Variables
+Title: Tools for Handling Common Tasks with Socio-Demographic Variables
 Version: 0.0.0.9000
 Authors@R: 
     person("Laurence", "Rowley-Abel", , "lrowley@ed.ac.uk", role = c("aut", "cre"))
