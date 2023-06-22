@@ -13,7 +13,8 @@ order_age_groups(x)
 A factor ordered from youngest to oldest age group
 }
 \description{
-Order age group variables from youngest to oldest
+Turns a character vector of age groups into an factor with levels ordered by the lowest age in each age group. This is useful to prevent age groups being sorted alphabetically in plots and tables.
+Groups such as "Aged 5 or under" are treated as having a lowest age of 0.
 }
 \examples{
 df<- data.frame(age_group = c("Aged 0 to 4", "Aged 5 to 9", "Aged 10 to 14"), n = c(21, 15, 34))

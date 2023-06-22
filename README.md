@@ -27,17 +27,7 @@ This is a basic example which shows you how to use the
 ``` r
 library(sociodemographics)
 library(dplyr)
-#> Warning: package 'dplyr' was built under R version 4.2.3
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 library(ggplot2)
-#> Warning: package 'ggplot2' was built under R version 4.2.2
 
 # Example data with age group counts
 df<- data.frame(age_group = c("Aged 0 to 4", "Aged 5 to 9", "Aged 10 to 14"), n = c(21, 15, 34))

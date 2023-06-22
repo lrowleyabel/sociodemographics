@@ -33,7 +33,7 @@ devtools::install_github("lrowleyabel/sociodemographics")
 
 This is a basic example which shows you how to use the ```order_age_groups``` function:
 
-```{r example, out.width="75%"}
+```{r example, out.width="75%", dpi=1000, warning=FALSE, message=FALSE}
 library(sociodemographics)
 library(dplyr)
 library(ggplot2)
