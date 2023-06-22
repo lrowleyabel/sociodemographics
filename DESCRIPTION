@@ -11,3 +11,5 @@ RoxygenNote: 7.2.3
 Imports:
     dplyr,
     stringr
+URL: https://github.com/lrowleyabel/sociodemographics
+BugReports: https://github.com/lrowleyabel/sociodemographics/issues
