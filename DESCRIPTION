@@ -3,7 +3,7 @@ Title: Tools for Handling Common Socio-Demographic Variables
 Version: 0.0.0.9000
 Authors@R: 
     person("Laurence", "Rowley-Abel", , "lrowley@ed.ac.uk", role = c("aut", "cre"))
-Description: Simple tools for recoding, sorting and managing common socio-demographic demographic variables.
+Description: A small collection of tools that faciliate common tasks with socio-demographic variables.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

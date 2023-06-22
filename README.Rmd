@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-This is a simple R package to facilitate common tasks when dealing with socio-demographic variables. It is currently under development.
+This is a simple R package collecting a few functions that facilitate common tasks when dealing with socio-demographic variables. It is currently under development and so has only a couple of functions.
 
 ## Installation
 
