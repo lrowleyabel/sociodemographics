@@ -1,3 +1,18 @@
+#' Order age group variables from youngest to oldest
+#'
+#' @param x A character vector containing the age groups
+#'
+#' @return A factor ordered from youngest to oldest age group
+#' @importFrom dplyr %>%
+#' @importFrom stringr str_extract
+#' @importFrom stringr str_detect
+#' @export
+#'
+#' @examples
+#' df<- data.frame(age_group = c("Aged 0 to 4", "Aged 5 to 9", "Aged 10 to 14"), n = c(21, 15, 34))
+#'
+#' df$age_group<- order_age_groups(df$age_group)
+
 order_age_groups<- function(x){
 
   # Get lowest age for each group
