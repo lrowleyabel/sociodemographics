@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-This is a simple R package collecting a few functions that facilitate common tasks when dealing with socio-demographic variables. It is currently under development and so has only a couple of functions.
+This is an R package collecting a few functions for dealing with socio-demographic variables. It is currently under development.
 
 ## Installation
 
@@ -31,7 +31,7 @@ devtools::install_github("lrowleyabel/sociodemographics")
 
 ## Example
 
-This is a basic example which shows you how to use the ```order_age_groups``` function:
+This is a basic example which shows how to use the ```order_age_groups``` function:
 
 ```{r example, out.width="75%", dpi=1000, warning=FALSE, message=FALSE}
 library(sociodemographics)
