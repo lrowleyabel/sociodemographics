@@ -58,10 +58,6 @@ population_pyramid<- function(data, count, age, side, left, proportions = FALSE,
     stop("Value provided to left is not in variable provided to side")
   }
 
-  # Get count range
-  count_range<- data%>%
-    summarise(count_min = min({{ count }}, na.rm = TRUE), count_max = max({{ count }}, na.rm = T))
-
   # Calculate per-capita values if these are being plotted
   if (proportions){
 
@@ -93,6 +89,10 @@ population_pyramid<- function(data, count, age, side, left, proportions = FALSE,
     }
 
   }
+
+  # Get count range
+  count_range<- data%>%
+    summarise(count_min = min({{ count }}, na.rm = TRUE), count_max = max({{ count }}, na.rm = T))
 
   # Negate the count for the left category
   data<- data%>%
