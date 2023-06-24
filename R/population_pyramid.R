@@ -53,6 +53,9 @@
 #'
 population_pyramid<- function(data, count, age, side, left, proportions = FALSE, reference_indicator = NULL, reference_population = NULL, pal = NULL, colour = "black", linewidth = 1, width = 0.5, reference_point_size = 3, reference_point_linewidth = 1, centre_zero = TRUE){
 
+  # Make sure data is ungrouped
+  data<- ungroup(data)
+
   # Check value of left is in the side variable
   if (!left %in% data[[substitute(side)]]){
     stop("Value provided to left is not in variable provided to side")
