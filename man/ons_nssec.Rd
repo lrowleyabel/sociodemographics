@@ -17,7 +17,7 @@ ons_nssec(
 
 \item{exact}{Logical value indicating whether to use exact matching to the ONS categories. Default is \code{FALSE}.}
 
-\item{detailed}{Logical value indicating whether to use detailed ONS categories (8 class version). If \code{FALSE} the broad ONS categories (5 class version) will be used. Default is \code{TRUE}.}
+\item{detailed}{Logical value indicating whether to use detailed ONS categories (8 class version). If \code{FALSE} the broad ONS categories (5 class version) will be used. The function cannot convert between the two versions. Default is \code{TRUE}.}
 
 \item{keep_original}{Logical value indicating whether to return the original NS-SEC categories provided. If \code{TRUE} the function will simply order the provided categories by the order of the matched ONS categories. Default is \code{FALSE}.}
 

@@ -4,7 +4,7 @@
 #'
 #' @param x Character vector of NS-SEC values to be converted.
 #' @param exact Logical value indicating whether to use exact matching to the ONS categories. Default is `FALSE`.
-#' @param detailed Logical value indicating whether to use detailed ONS categories (8 class version). If `FALSE` the broad ONS categories (5 class version) will be used. Default is `TRUE`.
+#' @param detailed Logical value indicating whether to use detailed ONS categories (8 class version). If `FALSE` the broad ONS categories (5 class version) will be used. The function cannot convert between the two versions. Default is `TRUE`.
 #' @param keep_original Logical value indicating whether to return the original NS-SEC categories provided. If `TRUE` the function will simply order the provided categories by the order of the matched ONS categories. Default is `FALSE`.
 #' @param match_distance Maximum allowed distance for fuzzy matching. Default is `0.3`.
 #'
