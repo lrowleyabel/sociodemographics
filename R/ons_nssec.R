@@ -22,57 +22,44 @@
 #'
 #' @examples
 #' # Add example
-ons_nssec<- function(x, exact = FALSE, detailed = TRUE, keep_original = FALSE, match_distance = 0.3){
-
-  # Load in ONS categories
+ons_nssec<- function (x, exact = FALSE, detailed = TRUE, keep_original = FALSE,
+                      match_distance = 0.3)
+{
   data("nssec_lookup")
+  ons_col <- ifelse(detailed, 1, 2)
+  nssec_lookup <- unique(nssec_lookup[, ons_col])
+  colnames(nssec_lookup) <- "ons_nssec"
+  provided_df <- data.frame(provided = as.character(x))
 
-  # Select detailed or broad ONS categories
-  ons_col<- ifelse(detailed, 1, 2)
-  nssec_lookup<- unique(nssec_lookup[,ons_col])
-  colnames(nssec_lookup)<- "ons_nssec"
+  if (exact) {
+    match <- left_join(provided_df, nssec_lookup, by = c("provided" = "ons_nssec"))
+  }
+  else {
+    match <- stringdist_join(provided_df, nssec_lookup,
+                             mode = "left", by = c("provided" = "ons_nssec"), method = "jw",
+                             max_dist = match_distance, distance_col = "dist") %>%
+      group_by(provided) %>% slice_min(order_by = dist,
+                                       n = 1, with_ties = F)
 
-  # Match provided categories to ONS categories
-  provided_df<- data.frame(provided = x)
+    match<- left_join(provided_df, match, by = "provided")
 
-  if (exact){
-
-    match<- left_join(provided_df, nssec_lookup, by = c("provided_df" = "ons_nssec"))
-
-  } else {
-
-    # Fuzzy match provided categories to ONS categories
-    match<- stringdist_join(provided_df, nssec_lookup, mode = "left", by = c("provided" = "ons_nssec"), method = "jw", max_dist = match_distance, distance_col = "dist")%>%
-      group_by(provided)%>%
-      slice_min(order_by = dist, n = 1, with_ties = F)
-
-    # Print matches to the console
-    for (i in 1:nrow(unique(match))){
+    for (i in 1:nrow(unique(match))) {
       cli_h1("Matching to ONS Categories")
-      cli_div(theme = list(span.var1 = list(color = "green"), span.var2 = list(color = "blue")))
+      cli_div(theme = list(span.var1 = list(color = "green"),
+                           span.var2 = list(color = "blue")))
       cli_text("{.var1 {unique(match[i,1])}} matched to {.var2 {unique(match[i,2])}}")
       cli_text()
       cli_end()
-
     }
-
-    # Confirm matches with user
-    user_confirmation<- readline("Are you happy with these matches? (y/n)")
-    if (user_confirmation != "y") stop("Aborting")
-
+    user_confirmation <- readline("Are you happy with these matches? (y/n)")
+    if (user_confirmation != "y")
+      stop("Aborting")
   }
-
-  # Return a factor ordered by the ONS categories' order
-  if (keep_original){
-
-    levels_df<- left_join(nssec_lookup, match, by = "ons_nssec")
-
+  if (keep_original) {
+    levels_df <- left_join(nssec_lookup, match, by = "ons_nssec")
     return(factor(match$ons_nssec, levels = unique(levels_df$provided)))
-
-  } else {
-
-    return(factor(match$ons_nssec, levels = unique(nssec_lookup$ons_nssec)))
-
   }
-
+  else {
+    return(factor(match$ons_nssec, levels = unique(nssec_lookup$ons_nssec)))
+  }
 }
