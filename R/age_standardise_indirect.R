@@ -46,17 +46,17 @@ age_standardise_indirect<- function(interest_counts, interest_age_specific_popul
   standard_age_specific_counts<- ungroup(standard_age_specific_counts)
   standard_age_specific_population<- ungroup(standard_age_specific_population)
 
-  if (!is.null(sum_counts_across)){
+  if (!is.null(as.character(substitute(sum_counts_across)))){
 
     # Filter out counts to be excluded
     interest_counts<- interest_counts%>%
-      filter(!{{ sum_counts_across }} %in% exclude_counts)
+      dplyr::filter(!{{ sum_counts_across }} %in% exclude_counts)
 
     standard_age_specific_counts<- standard_age_specific_counts%>%
-      filter(!{{ sum_counts_across }} %in% exclude_counts)
+      dplyr::filter(!{{ sum_counts_across }} %in% exclude_counts)
 
     # Sum counts
-    if (is.null(interest_grouping_variable)){
+    if (is.null(as.character(substitute(interest_grouping_variable)))){
 
       interest_counts<- interest_counts%>%
         summarise({{ count_variable }} := sum({{ count_variable }}, na.rm = T))
@@ -72,7 +72,7 @@ age_standardise_indirect<- function(interest_counts, interest_age_specific_popul
         summarise({{ count_variable }} := sum({{ count_variable }}, na.rm = T))
 
       standard_age_specific_counts<- standard_age_specific_counts%>%
-        group_by({{ age_variable }}, {{ interest_grouping_variable }})%>%
+        group_by({{ age_variable }})%>%
         summarise({{ count_variable }} := sum({{ count_variable }}, na.rm = T))
 
     }
@@ -99,7 +99,7 @@ age_standardise_indirect<- function(interest_counts, interest_age_specific_popul
     mutate(age_specific_expected_count = {{ population_variable }}*standard_age_specific_rate)
 
   # Sum expected counts across age groups and join to observed counts
-  if (is.null(interest_grouping_variable)){
+  if (is.null(as.character(substitute(interest_grouping_variable)))){
 
     interest_expected_count<- interest_age_specific_expected%>%
       summarise(expected_count = sum(age_specific_expected_count, na.rm = T))
