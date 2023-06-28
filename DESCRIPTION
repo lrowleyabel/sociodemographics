@@ -13,6 +13,12 @@ Imports:
     stringr,
     ggplot2,
     ggnewscale,
-    rlang
+    rlang,
+    fuzzyjoin,
+    cli,
+    utils
 URL: https://github.com/lrowleyabel/sociodemographics
 BugReports: https://github.com/lrowleyabel/sociodemographics/issues
+Depends: 
+    R (>= 2.10)
+LazyData: true
