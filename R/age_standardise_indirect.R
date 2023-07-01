@@ -48,12 +48,16 @@ age_standardise_indirect<- function(interest_counts, interest_age_specific_popul
 
   if (!is.null(as.character(substitute(sum_counts_across)))){
 
-    # Filter out counts to be excluded
-    interest_counts<- interest_counts%>%
-      dplyr::filter(!{{ sum_counts_across }} %in% exclude_counts)
+    # Filter out counts to be excluded if given
+    if(!is.null(exclude_counts)){
 
-    standard_age_specific_counts<- standard_age_specific_counts%>%
-      dplyr::filter(!{{ sum_counts_across }} %in% exclude_counts)
+      interest_counts<- interest_counts%>%
+        dplyr::filter(!{{ sum_counts_across }} %in% exclude_counts)
+
+      standard_age_specific_counts<- standard_age_specific_counts%>%
+        dplyr::filter(!{{ sum_counts_across }} %in% exclude_counts)
+
+    }
 
     # Sum counts
     if (is.null(as.character(substitute(interest_grouping_variable)))){
