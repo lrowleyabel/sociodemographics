@@ -25,7 +25,7 @@
 ons_nssec<- function (x, exact = FALSE, detailed = TRUE, keep_original = FALSE,
                       match_distance = 0.3)
 {
-  data("nssec_lookup")
+  nssec_lookup<- sociodemographics:::nssec_lookup
   ons_col <- ifelse(detailed, 1, 2)
   nssec_lookup <- unique(nssec_lookup[, ons_col])
   colnames(nssec_lookup) <- "ons_nssec"
