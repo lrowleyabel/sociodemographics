@@ -12,9 +12,8 @@ age_standardise_indirect(
   count_variable,
   population_variable,
   age_variable,
-  interest_grouping_variable = NULL,
-  sum_counts_across = NULL,
-  exclude_counts = NULL
+  grouping_variable,
+  single_standard_population
 )
 }
 \arguments{
@@ -32,11 +31,9 @@ age_standardise_indirect(
 
 \item{age_variable}{Variable providing age groups. This must be the same in each dataset provided.}
 
-\item{interest_grouping_variable}{Optional variable providing groups within the population of interest. If provided, rates will be calculated separately for each group. This is useful if you wish to look at how rates vary across a variable of interest in an age-standardised way (eg: look at the rate of the event in each ethnic group while standardising to the general populaiton's age structure).}
+\item{grouping_variable}{Optional variable providing groups within the population. If provided, rates will be calculated separately for each group. This is useful if you wish to look at how rates vary across a variable of interest in an age-standardised way (eg: look at the rate of the event in each ethnic group while standardising to the general populaiton's age structure).}
 
-\item{sum_counts_across}{Optional variable providing categories across which to sum the event counts.}
-
-\item{exclude_counts}{Optional character string or vector providing of categories in the \code{sum_counts_across} variable which should be exlcuded from the counts. Only applies is \code{sum_counts_across} is not \code{NULL}.}
+\item{single_standard_population}{Logical value indicating whether to standardise each population group (as provided by \code{grouping_variable}) should be standardised to a single standard population. If \code{TRUE}, the groups will be standardised to the same standard population. If \code{FALSE}, the groups will be standardised to group-specific populations and the separate event counts and age group sizes must be provided for each group in the dataframes provided to \code{standard_age_specific_counts} and \code{standard_age_specific_population}.}
 }
 \value{
 A tibble containing observed counts, expected counts and indirectly age-standardised rates of the event for the population of interest.
