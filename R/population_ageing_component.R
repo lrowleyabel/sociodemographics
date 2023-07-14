@@ -63,11 +63,21 @@ population_ageing_component<- function(age_specific_interest_counts, age_specifi
 
   expected_count_t2<- sum(expected_count_t2$expected_count, na.rm = T)
 
+  # Calculate observed total event count at time point 1
+  total_count_t1<- age_specific_interest_counts%>%
+    filter({{ time_variable }} == start)%>%
+    summarise(n = sum(n, na.rm = T))
+
+  total_count_t1<- total_count_t1$n[1]
+
+  # Calculate expected growth from time point 1 to time point 2
+  expected_growth_t2<- expected_count_t2 - total_count_t1
+
   # Calculate growth component
   growth_component<- population_growth_component(age_specific_interest_counts = age_specific_interest_counts, age_specific_population = age_specific_population, count_variable = {{ count_variable }}, age_variable = {{ age_variable }}, population_variable = {{ population_variable }}, time_variable = {{ time_variable }}, start = start)
 
   # Calculate ageing component
-  ageing_component<- expected_count_t2 - growth_component
+  ageing_component<- expected_growth_t2 - growth_component
 
   return(ageing_component)
 
